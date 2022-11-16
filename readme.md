@@ -36,6 +36,8 @@ application running within a [`WKWebView`](https://developer.apple.com/documenta
 The JavaScript application would send a plain object over to the Swift side,
 which I think get serialized based on the rules of [`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone).
 
+See also the [`structuredClone` algorithm](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm).
+
 The bits that are binary (like array buffers) would get saved to their own files
 and the bits that serialize to humand readable text would get saved to a text
 file.
