@@ -1,4 +1,4 @@
-# Swift Adaptive Storage
+# Swift `AdaptiveStorage`
 
 This repository hosts a nascent Swift library for file system data storage.
 It is build around the [`FileManager`](https://developer.apple.com/documentation/foundation/filemanager)
@@ -60,3 +60,25 @@ at a different frequency.
 
 This should help optimize the way data is stored and take away the concern out
 of the data design in the app.
+
+## To-Do
+
+### Measure approximate durations of basic file system operations on macOS and iOS
+
+In order to be able to get a rough idea of if it even makes sense to split a file
+and maybe introduce an index file to speed up the reads and lookups for the size
+of data I have in mind, I need to get some numbers.
+
+Measure stuff like:
+
+- How long does it usually take a read and write a text?
+  - 1 kB, 1 MB, 1 GB
+- How long does it take when also serializing and deserializing from JSON?
+  - This will give me a hint of the Swift JSON parser/serializer
+- What is the latency of marshalling data over to and from WKWebView
+  - This will reveal the speed of the structured clone algorithm
+- How long does it take a list a directory?
+  - 1 file, 10 files, 100 files, 1000 files, 10000 files, 100000 files
+- Is an index file worth having in ordet to look up a record by an ID?
+  - Should I store a JSON array of objects as one big file?
+  - Should I save the individual objects in their files and have a lookup file?
